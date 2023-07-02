@@ -1,0 +1,17 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.7;
+contract assessment
+{
+    mapping(address=>uint) balances;
+    function Deposite()public payable
+    {
+         if(msg.value>9 ether)
+        {
+            revert();
+        }
+        assert(balances[msg.sender]==0);
+        require(balances[msg.sender]==0);//can transfer only once
+        balances[msg.sender]+=msg.value;
+    }
+    
+}
