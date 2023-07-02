@@ -1,4 +1,4 @@
-# ETH_2assessement_1
+# ETH_2assessment_1
 # Solidity Contract - Assessment
 
 This contract implements a simple deposit function in Solidity. It showcases the usage of the `assert`, `revert`, and `require` statements for validation and error handling.
