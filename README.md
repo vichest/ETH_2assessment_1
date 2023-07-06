@@ -3,8 +3,6 @@
 
 This contract implements a simple deposit function in Solidity. It showcases the usage of the `assert`, `revert`, and `require` statements for validation and error handling.
 
-## Contract Details
-
 ### SPDX-License-Identifier
 
 The contract is licensed under the MIT License. The SPDX-License-Identifier is specified at the beginning of the file for clarity and legal compliance.
@@ -15,50 +13,33 @@ The contract is licensed under the MIT License. The SPDX-License-Identifier is s
 
 ### Pragma Directive
 
-The `pragma solidity` directive specifies the version of the Solidity compiler required to compile the contract. In this case, the contract requires Solidity version 0.8.7.
+The `pragma solidity` directive specifies the version of the Solidity compiler required to compile the contract. In this case, the contract requires Solidity version 0.8.9.
 
 ```
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.9;
 ```
 
-### Contract Definition
+### Description
+The "test" contract presented here is a Solidity smart contract that showcases error handling techniques using `revert`, `assert`,`require` and custom error messages. The contract enables users to deposit and withdraw funds while ensuring proper validation and error handling.
 
-The contract is named `assessment` and includes a mapping called `balances` that associates addresses with corresponding balances.
+The contract features a `constructor` that initializes the contract by setting the contract owner and the initial balance. The `deposit` function allows the contract owner to deposit funds into the contract. It verifies that the caller is the owner and updates the balance accordingly. It also utilizes `assert` to assert that the updated balance is correct.
 
-```
-contract assessment {
-    mapping(address => uint) balances;
+To handle a scenario where the contract does not have sufficient balance for withdrawal, the contract defines a custom error message using the `error` keyword. The `withdraw` function checks if the caller is the owner and if the contract has enough balance for the withdrawal amount. If the condition is not met, it reverts the transaction with the custom error message `InsufficientBalance`.
 
-    // Rest of the contract...
-}
-```
+Overall, this contract provides a practical example of how to implement error handling techniques in Solidity smart contracts to ensure proper validation and handling of errors during deposit and withdrawal operations.
 
-### Deposite Function
 
-The contract includes a function called `Deposite` (note the spelling error, assuming it should be `Deposit`). This function allows users to deposit Ether into the contract.
+### Deployment and usage
+The Solidity smart contract provided in this project demonstrates the implementation of error handling using `revert`, `assert`, and custom error messages. The contract, named `test`, allows users to deposit and withdraw funds while ensuring proper validation and error handling.
 
-```solidity
-function Deposite() public payable {
-    if (msg.value > 9 ether) {
-        revert();
-    }
-    assert(balances[msg.sender] == 0);
-    require(balances[msg.sender] == 0);  // Can transfer only once
-    balances[msg.sender] += msg.value;
-}
-```
+The contract features a constructor that initializes the contract's owner and initial balance. The `deposit` function enables the contract owner to deposit funds into the contract, updating the balance accordingly. It employs a `require` statement to verify that the sender is the owner, preventing unauthorized deposits. The `assert` statement is then used to ensure that the balance is updated correctly.
 
-#### Explanation
+To handle the scenario of insufficient balance during a withdrawal, the contract includes a custom error called `InsufficientBalance`. The `withdraw` function allows the owner to withdraw funds from the contract. Before executing the withdrawal, it checks if the balance is sufficient using a `require` statement. If the balance is insufficient, it reverts the transaction with a custom error message, indicating the current balance and the requested withdrawal amount.
 
-1. The function is marked as `public` and `payable`, meaning it can be called by any external account and accepts Ether with the transaction.
+Throughout the contract, `assert` statements are utilized to validate internal contract state and ensure correctness. These statements verify that the changes made to the balance during deposit and withdrawal operations are as expected.
 
-2. The function begins with an `if` statement to check if the value sent with the transaction is greater than 9 ether. If it is, the `revert()` statement is called, causing the transaction to revert and revert all state changes made so far.
+This project serves as a useful reference for implementing error handling mechanisms in Solidity contracts, providing insights into the proper usage of `revert`, `assert`, and custom error messages. Developers can learn how to validate conditions, revert transactions when necessary, and assert internal contract state to ensure the integrity of their smart contracts.
 
-3. Next, an `assert` statement is used to verify that the balance of the sender is zero before the deposit. If the assertion fails (balance is not zero), it will trigger an exception and revert the transaction.
-
-4. Following the `assert`, a `require` statement is used to enforce the same condition as the `assert` statement. The purpose of the `require` statement is to validate the condition and throw an exception, reverting the transaction if the condition is not met. In this case, it ensures that the balance of the sender is zero before proceeding.
-
-5. If all the conditions pass, the balance of the sender is incremented by the value sent with the transaction using `balances[msg.sender] += msg.value`.
 
 ## License
 
